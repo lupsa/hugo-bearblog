@@ -2,12 +2,15 @@
 <meta name="title" content="{{ with .Title }}{{ . }}{{ else }}{{ .Site.Title }}{{ end }}" />
 <meta name="description" content="{{ with .Description }}{{ . }}{{ else }}{{if .IsPage}}{{ .Summary }}{{ else }}{{ with .Site.Params.description }}{{ . }}{{ end }}{{ end }}{{ end }}" />
 <meta name="keywords" content="{{ if .IsPage}}{{ range $index, $tag := .Params.tags }}{{ $tag }},{{ end }}{{ else }}{{ range $plural, $terms := .Site.Taxonomies }}{{ range $term, $val := $terms }}{{ printf "%s," $term }}{{ end }}{{ end }}{{ end }}" />
-
+<meta name="robots" content="index,all,follow">
+<meta name="googlebot" content="index,follow,snippet,archive">
 <!-- Open Graph / Facebook -->
 {{ template "_internal/opengraph.html" . }}
 
 <!-- Twitter -->
 {{ template "_internal/twitter_cards.html" . }}
+<meta name="twitter:text:title" content="{{ if .IsHome}}{{ .Title}}, {{ .Site.Params.tagline}}{{ else}}{{ with .Title }}{{ . }} | {{ end }}{{ .Site.Title }}{{ end}}" />
 
 <!-- Microdata -->
 {{ template "_internal/schema.html" . }}
+{{- partial "schema-json.html" . }}

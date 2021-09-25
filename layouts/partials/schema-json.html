@@ -1,0 +1,29 @@
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org/",
+  "@type": "BlogPosting",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "{{ .Permalink }}"
+  },
+  "headline": "{{ .Title }}",
+  "description": "{{ with .Description }}{{ . }}{{ else }}{{if .IsPage}}{{ .Summary }}{{ else }}{{ with .Site.Params.description }}{{ . }}{{ end }}{{ end }}{{ end }}",
+  "keywords": "{{ if eq .Type "blog" }}{{ range (.GetTerms "tags") }}{{ .LinkTitle }}, {{ end }}{{ end}}",
+  "image": {
+    "@type": "ImageObject",
+    "url": "{{with .Site.Params.images}}{{.}}{{end}}"
+  },
+  "author": {
+    "@type": "Person",
+    "name": "{{ .Site.Params.author}}",
+    "url": "https://mrguff.com"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "{{.Site.Params.title}}"
+  },
+  "datePublished": "{{ .Date | safeHTML }}",
+  "dateModified": "{{ .Lastmod | safeHTML }}"
+}
+</script>
