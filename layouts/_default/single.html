@@ -5,9 +5,9 @@
       {{ .Date | time.Format ":date_long" }} | {{ .Date | time.Format ":time_short" }}
     </time>
 {{ end }}{{ end }}
-<content>
+<section>
   {{ .Content }}
-</content>
+</section>
 <p>
   {{ range (.GetTerms "tags") }}
   <a href="{{ .Permalink }}">#{{ .LinkTitle }}</a>
