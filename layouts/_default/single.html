@@ -5,7 +5,7 @@
       {{ .Date | time.Format ":date_long" }} | {{ .Date | time.Format ":time_short" }}
     </time>
 {{ end }}{{ end }}
-<section>
+<section itemprop="articleBody">
   {{ .Content }}
 </section>
 <p>
