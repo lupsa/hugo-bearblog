@@ -27,9 +27,7 @@
   <header>
     {{- partial "header.html" . -}}
   </header>
-  <main itemscope itemtype="http://schema.org/BlogPosting">
-  	{{ partial "seo_microdata.html" . }}
-
+  <main>
     {{- block "main" . }}{{- end }}
   </main>
   <footer>
