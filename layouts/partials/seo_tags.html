@@ -10,4 +10,5 @@
 <!-- Twitter -->
 {{ template "_internal/twitter_cards.html" . }}
 <meta name="twitter:text:title" content="{{ if .IsHome}}{{ .Title}}, {{ .Site.Params.tagline}}{{ else}}{{ with .Title }}{{ . }} | {{ end }}{{ .Site.Title }}{{ end}}" />
+<link rel="canonical" href="{{ .Permalink | absURL}}"/>
 {{ partial "seo_microdata.html" . }}
