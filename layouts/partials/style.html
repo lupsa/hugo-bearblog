@@ -1,15 +1,19 @@
 <style>
+  html {
+    text-rendering: optimizelegibility;
+  }
+
   body {
     font-family: Verdana, sans-serif;
     margin: auto;
     padding: 20px;
     max-width: 720px;
     text-align: left;
-    background-color: #fff;
+    background-color: #fafafa;
     word-wrap: break-word;
     overflow-wrap: break-word;
     line-height: 1.5;
-    color: #444;
+    color: #555;
     font-size: 16px;
   }
 
@@ -41,7 +45,8 @@
 	    font-weight: 400;
 	}
 
-  .post-time {
+  time {
+    color: #7a7a7a;
   	font-style: italic;
   }
 
@@ -123,6 +128,7 @@
 
   ul.blog-posts li {
     display: flex;
+    padding: 2px 0;
   }
 
   ul.blog-posts li span {
@@ -135,7 +141,7 @@
 
   @media (prefers-color-scheme: dark) {
     body {
-      background-color: #333;
+      background-color: #282c34;
       color: #ddd;
     }
 
@@ -156,6 +162,10 @@
 
     code {
       background-color: #777;
+    }
+
+    time {
+      color: rgba(255,255,255,.5);
     }
 
     pre code {
