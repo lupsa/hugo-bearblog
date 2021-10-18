@@ -1,11 +1,40 @@
 <style>
-
+  /* pt-sans-regular - latin-ext_latin */
+  @font-face {
+    font-family: 'PT Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: local(''),
+        url('/fonts/PTSans/pt-sans-v12-latin-ext_latin-regular.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
+        url('/fonts/PTSans/pt-sans-v12-latin-ext_latin-regular.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+  }
+  /* pt-sans-700 - latin-ext_latin */
+  @font-face {
+    font-family: 'PT Sans';
+    font-style: normal;
+    font-weight: 700;
+    font-display: swap;
+    src: local(''),
+        url('/fonts/PTSans/pt-sans-v12-latin-ext_latin-700.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
+        url('/fonts/PTSans/pt-sans-v12-latin-ext_latin-700.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+  }
+  /* pt-sans-italic - latin-ext_latin */
+  @font-face {
+    font-family: 'PT Sans';
+    font-style: italic;
+    font-weight: 400;
+    font-display: swap;
+    src: local(''),
+        url('/fonts/PTSans/pt-sans-v12-latin-ext_latin-italic.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
+        url('/fonts/PTSans/pt-sans-v12-latin-ext_latin-italic.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+  }
   html {
     text-rendering: optimizelegibility;
   }
 
   body {
-    font-family: Verdana, sans-serif;
+    font-family: 'pt sans',Helvetica,Arial,sans-serif;
     margin: auto;
     padding: 20px;
     max-width: 720px;
@@ -13,9 +42,9 @@
     background-color: #fafafa;
     word-wrap: break-word;
     overflow-wrap: break-word;
-    line-height: 1.6;
+    line-height: 1.5;
     color: #555;
-    font-size: 16px;
+    font-size: 20px;
   }
 
   main {
@@ -133,7 +162,7 @@
 
   ul.blog-posts li {
     display: flex;
-    padding: 2px 0;
+    padding: 1px 0;
   }
 
   ul.blog-posts li span {
@@ -147,7 +176,7 @@
   @media (prefers-color-scheme: dark) {
     body {
       background-color: #282c34;
-      color: #ddd;
+      color: #ccc;
     }
 
     h1,
