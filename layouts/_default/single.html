@@ -9,8 +9,7 @@
 <p>
   {{ range (.GetTerms "tags") }}
   <a href="{{ .Permalink }}">#{{ .LinkTitle }}</a>
+  {{ partial "share.html" . }}
   {{ end }}
 </p>
-
-{{ partial "share.html" . }}
 {{ end }}
