@@ -34,6 +34,7 @@
   }
 
   body {
+    display: block;
     font-family: 'pt sans',Helvetica,Arial,sans-serif;
     margin: auto;
     padding: 20px;
@@ -44,7 +45,7 @@
     overflow-wrap: break-word;
     line-height: 1.5;
     color: #555;
-    font-size: 20px;
+    font-size: 18px;
   }
 
   main {
@@ -64,20 +65,24 @@
 
   a {
     color: #3273dc;
+    text-decoration: none;
   }
 
 	.title {
 	    text-decoration: none;
 	    border: 0;
+      margin-bottom: 0;
 	}
 
 	.title h1 {
 	    font-size: 1.5em;
 	}
 
-	.title span {
-	    font-weight: 400;
-	}
+  .post-title {
+    font-size: 2em;
+    line-height: 1.1;
+    letter-spacing: -.025;
+  }
 
   time {
     color: #7a7a7a;
@@ -162,11 +167,12 @@
 
   ul.blog-posts li {
     display: flex;
-    padding: 1px 0;
+    padding: 5px 0;
+    line-height: 1.2;
   }
 
   ul.blog-posts li span {
-    flex: 0 0 130px;
+    flex: 0 0 110px;
   }
 
   ul.blog-posts li a:visited {
