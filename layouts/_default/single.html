@@ -1,15 +1,22 @@
 {{ define "main" }}
-{{ if eq .Type "blog" }}{{ if not .Params.menu }}
-<h1 class="post-title">{{ .Title }}</h1>
-    <time class="post-time" datetime='{{ .Date.Format `2006-01-02T15:04:05Z07:00` | safeHTML }}'>
-      {{ .Date | time.Format ":date_full" }}
-    </time>
-{{ end }}{{ end }}
+<section>
+{{ if eq .Type "blog" }}
+  <h1 class="post-title">{{ .Title }}</h1>
+  <time class="post-time" datetime='{{ .Date.Format `2006-01-02T15:04:05Z07:00` | safeHTML }}'>
+    {{ .Date | time.Format ":date_full" }}
+  </time>
+    
   {{ .Content }}
-<p>
+
+<div>
+  Tags:
   {{ range (.GetTerms "tags") }}
   <a href="{{ .Permalink }}">#{{ .LinkTitle }}</a>
-  {{ partial "share.html" . }}
   {{ end }}
-</p>
+</div>
+  {{ partial "share.html" . }}
+{{ else }}
+ {{.Content}}
+{{ end}}
+</section>
 {{ end }}
