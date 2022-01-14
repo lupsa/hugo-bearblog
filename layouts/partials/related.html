@@ -1,0 +1,15 @@
+{{ if (gt .Site.Params.related_posts_count 0) }}
+{{ $related := .Site.RegularPages.Related . | first .Site.Params.related_posts_count }}
+{{ with $related }}
+<div class="related">
+<h3>Related posts</h3>
+<ul class="related-posts">
+	{{ range . }}
+	<li>
+      <a href="{{ .RelPermalink }}">{{ .Title }}</a><time class="post-time"> - {{ .Date | time.Format ":date_medium" }}</time>
+  </li>
+	{{ end }}
+</ul>
+</div>
+{{ end }}
+{{ end}}
