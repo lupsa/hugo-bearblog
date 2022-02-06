@@ -1,0 +1,71 @@
+{{ with .Site.Params.staticman.api }}
+<section id="staticman-comments" class="js-comments staticman-comments">
+    {{ $slug := replace $.RelPermalink "/" "" }}
+  
+    {{ if $.Site.Data.comments }}
+      {{ $comments := index $.Site.Data.comments $slug }}
+      {{ if $comments }}
+        {{ if gt (len $comments) 1  }}
+          <h3>{{ len $comments  }} comments</h3>
+        {{ else }}
+          <h3>{{ len $comments  }} comment</h3>
+        {{ end }}
+      {{ else }}
+        <h3>No comments</h3>
+      {{ end }}
+  
+  
+      {{ $.Scratch.Set "hasComments" 0 }}
+      {{ range $index, $comments := (index $.Site.Data.comments $slug ) }}
+        {{ if not .parent }}
+          {{ $.Scratch.Add "hasComments" 1 }}
+          <article id="comment-{{ $.Scratch.Get "hasComments" }}" class="static-comment">
+            <div class="comment-meta">
+                <img class="comment-gravatar" src="https://www.gravatar.com/avatar/{{ .email }}?s=128&d=mm&r=x">
+                <span class="comment-author">{{ if .website }}<a href="{{ .website }}" rel="external nofollow ugc">{{ .name }}</a>{{ else }}{{ .name }}{{ end }}</span>
+                <a href="#comment-{{ $.Scratch.Get "hasComments" }}" title="Permalink to this comment">
+                <time class="comment-timestamp" datetime="{{ .date }}">{{ dateFormat (default "2 Jan 2006 15:04" .Site.Params.dateformat) .date}}</time>
+                </a>
+                <a href="#comment-{{ $.Scratch.Get "hasComments" }}" title="Permalink to this comment">
+                  <span class="comment-number">#{{ $.Scratch.Get "hasComments" }}</span>
+                </a>
+            </div>
+            <div class="comment-content"><p>{{ .comment | markdownify }}</p></div>
+          </article>
+        {{ end }}
+      {{ end }}
+    {{ end }}
+  
+  
+  
+  <form class="js-form form" method="post" action="{{ $.Site.Params.staticman.api }}" onsubmit="return checkForm(this);">
+    <h3>Your thoughts?</h3>
+    <span class="staticman-info">Your email address will not be published. Required fields are marked *</span>
+
+    <fieldset>
+        <input type="hidden" name="options[redirect]" value="{{ $.RelPermalink | absURL }}#comment-thankyou">
+        <input type="hidden" name="options[slug]" value="{{ replace $.RelPermalink "/" "" }}">
+        <input type="hidden" name="options[parent]" value="">
+        <input name="fields[name]" id="yourname" type="text" placeholder="Name *" required/>
+        <input name="fields[email]" id="youremail" type="email" placeholder="Email *" required/>
+        <input name="fields[website]" id="website" type="url" placeholder="Website"/>
+        <textarea name="fields[comment]" id="yourcomment" placeholder="What are you thinking? (markdown is accepted) *" required></textarea>
+        <button class="button" id="submitButton">Submit</button>
+        <output id="warningComment"></output>
+    </fieldset>
+  </form>
+
+<aside aria-label="note" class="note">
+    <section id="comment-thankyou" style="display: none; margin-left: 5px"> 
+        Thank you for your comment, it will be displayed once it has been approved!
+    </section>
+</aside>
+<script type="application/javascript">
+    if (/comment-thankyou/.test(window.location.href)) {
+        document.getElementById('comment-thankyou').style.display = 'block';
+    }else{
+        document.getElementById('comment-thankyou').style.display = 'none';
+    }
+</script>
+</section>
+{{ end }}

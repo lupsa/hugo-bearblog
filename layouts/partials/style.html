@@ -187,8 +187,13 @@
     color: #8b6fcb;
   }
 
+  .share-buttons {
+    margin-bottom: 25px;
+  }
+
   .related {
-    margin-top: 50px;
+    padding-top: 25px;
+    border-top: 1px solid #999;
   }
 
   .related h3 {
@@ -202,6 +207,108 @@
     padding: unset;
     margin: 10px 0;
   }
+
+/* Styles for staticman fields*/
+  .staticman-comments {
+    margin-top: 30px;
+    margin-bottom: 2rem;
+    border-top: 1px solid #999;
+    max-width: 100%;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+  }
+
+  .static-comment {
+    border-bottom: 1px solid #999;
+    margin-top: 2rem;
+  }
+
+  .comment-meta {
+    position: relative;
+    font-size: 1rem;
+  }
+
+  .comment-gravatar {
+    width: 48px;
+  }
+
+  .comment-author {
+    position: absolute;
+    left: 60px;
+    font-weight: 700;
+  }
+
+  .comment-timestamp {
+    position: absolute;
+    left: 60px;
+    bottom: 0;
+  }
+
+  .comment-number {
+    position: absolute;
+    right: 0;
+  }
+
+  .staticman-comments input, .staticman-comments textarea {
+    border: 1px solid #999;
+    border-radius: 5px;
+    padding: 10px;
+    width: 50%;
+    margin-top: 0.5rem;
+    margin-bottom: 1rem;
+    resize: vertical;
+    font-family: 'PT Sans' ,Helvetica, Arial, sans-serif;
+    font-size: inherit;
+    box-sizing: border-box;
+  }
+
+  .staticman-comments textarea {
+    height: 10em;
+    width: 100%;
+  }
+
+  .staticman-comments fieldset {
+    display: flex;
+    flex-direction: column;
+    border: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .staticman-info {
+    font-size: 1rem;
+    font-style: italic;
+  }
+
+  .staticman-comments #submitButton {
+    position: relative;
+    padding: 1rem;
+    width: 150px;
+    background: #fefefe;
+    border: 1px solid #999;
+    border-radius: 5px;
+    font-size: inherit;
+    cursor: pointer;
+  }
+
+  .note #comment-thankyou {
+    margin-top: 1rem;
+  }
+
+  #warningComment {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    width: 100%;
+    display: block;
+  }
+
+  @media screen and (max-width: 720px) {
+    .staticman-comments input, .staticman-comments textarea {
+      width: 100%;
+    }
+}
+  /* end staticman comments */
 
   @media (prefers-color-scheme: dark) {
     body {
@@ -242,7 +349,8 @@
     }
 
     textarea,
-    input {
+    input,
+    .staticman-comments #submitButton {
       background-color: #252525;
       color: #ddd;
     }
