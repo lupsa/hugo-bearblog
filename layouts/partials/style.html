@@ -222,8 +222,16 @@
   .static-comment {
     border-bottom: 1px solid #999;
     margin-top: 2rem;
+    padding-bottom: 2rem;
   }
-
+  .reply {
+    margin-left: 50px;
+    padding: 20px;
+    margin-top: 0;
+    margin-bottom: 5px;
+    background-color: #fefefe;
+    border: 1px solid rgba(0, 0, 0, .1);
+  }
   .comment-meta {
     position: relative;
     font-size: 1rem;
@@ -263,9 +271,19 @@
     box-sizing: border-box;
   }
 
-  .staticman-comments textarea {
-    height: 10em;
+  .comment-form {
     width: 100%;
+    position: relative;
+  }
+
+  .staticman-comments textarea {
+    min-height: 10em;
+    width: 100%;
+  }
+
+  .staticman-comments input:focus, .staticman-comments textarea:focus {
+    outline: none;
+    border: 1px solid rgba(0, 0, 0, .8);
   }
 
   .staticman-comments fieldset {
@@ -281,7 +299,7 @@
     font-style: italic;
   }
 
-  .staticman-comments #submitButton {
+  .staticman-comments .button {
     position: relative;
     padding: 1rem;
     width: 150px;
@@ -290,6 +308,16 @@
     border-radius: 5px;
     font-size: inherit;
     cursor: pointer;
+  }
+
+  .staticman-comments .button:hover {
+    opacity: .8;
+  }
+
+  #resetButton {
+    position: relative;
+    float: right;
+    margin-top: -60px;
   }
 
   .note #comment-thankyou {
@@ -350,9 +378,29 @@
 
     textarea,
     input,
-    .staticman-comments #submitButton {
+    .staticman-comments .button {
       background-color: #252525;
+      border-color: rgba(0, 0, 0, .6);
       color: #ddd;
+    }
+
+    .staticman-comments .button:hover {
+      background-color: rgba(0, 0, 0, .2);
+    }
+
+    .staticman-comments input, .staticman-comments textarea {
+      border-color: rgba(0, 0, 0, .6);
+    }
+
+    .staticman-comments input:focus, .staticman-comments textarea:focus {
+    outline: none;
+    border: 1px solid rgba(0, 0, 0, .8);
+    background-color: rgba(0, 0, 0, .2);
+    }
+
+    .reply {
+    background-color: rgba(0, 0, 0, .3);
+    border: 1px solid rgba(0, 0, 0, .4);
     }
 
     .helptext {
