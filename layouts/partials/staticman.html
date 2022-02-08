@@ -20,55 +20,51 @@
           {{ $parentName := .name }}
           {{ $hasReplies := 0 }}
           {{ $hasComments = add $hasComments 1 }}
-          <article id="comment-{{ $hasComments }}" class="static-comment">
+          <article id="comment-{{ ._id | md5 }}" class="static-comment">
             <div class="comment-meta">
                 <img class="comment-gravatar" src="https://www.gravatar.com/avatar/{{ .email }}?s=128&d=mm&r=x">
-                <span class="comment-author">{{ if .website }}<a href="{{ .website }}" rel="external nofollow ugc">{{ .name }}</a>{{ else }}{{ .name }}{{ end }}</span>
-                <a href="#comment-{{ $hasComments }}" title="Permalink to this comment">
-                <time class="comment-timestamp" datetime="{{ .date }}">{{ dateFormat (default "2 Jan 2006 15:04" .Site.Params.dateformat) .date}}</time>
+                <span class="comment-user {{ if eq .email ($.Site.Params.email | md5) }}comment-author{{ end }}">{{ if .website }}<a href="{{ .website }}" rel="external nofollow ugc">{{ .name }}</a>{{ else }}{{ .name }}{{ end }}</span>
+                <a href="#comment-{{ ._id | md5 }}" title="Permalink to this comment">
+                <time class="comment-timestamp" datetime="{{ .date }}">{{ .date | time.Format ":date_long" }} at {{ .date | time.Format ":time_short"}}</time>
                 </a>
-                <a href="#comment-{{ $hasComments }}" title="Permalink to this comment">
-                  <span class="comment-number">#{{ $hasComments }}</span>
-                </a>
+                <span class="comment-number">#{{ $hasComments }}</span>
             </div>
             <div class="comment-content"><p>{{ .comment | markdownify }}</p></div>
-            <a href="#staticman-form" onclick="replyTo('{{ ._id }}')" >Reply</a>
 
           {{ range $comments }}
             {{ if eq .reply_to $parentId }}
               {{ $hasReplies = add $hasReplies 1 }}
             {{ end }}
           {{ end }}
-
+          <div class="comments-reply">
           {{ range $comments }}
             {{ if eq .reply_to $parentId }}
               {{ $hasComments = add $hasComments 1 }}
-              <div id="comment-{{ $hasComments }}" class="reply">
+              <div id="comment-{{ ._id | md5 }}" class="reply">
                 <div class="comment-meta">
-                    <img class="comment-gravatar" src="https://www.gravatar.com/avatar/{{ .email }}?s=128&d=mm&r=x">
-                    <span class="comment-author">{{ if .website }}<a href="{{ .website }}" rel="external nofollow ugc">{{ .name }}</a>{{ else }}{{ .name }}{{ end }}</span>
-                    <a href="#comment-{{ $hasComments }}" title="Permalink to this comment">
-                    <time class="comment-timestamp" datetime="{{ .date }}">{{ dateFormat (default "2 Jan 2006 15:04" .Site.Params.dateformat) .date}}</time>
+                    <img class="comment-gravatar" src="https://www.gravatar.com/avatar/{{ .email }}?s=128&d=mm">
+                    <span class="comment-user {{ if eq .email ($.Site.Params.email | md5) }}comment-author{{ end }}">{{ if .website }}<a href="{{ .website }}" rel="external nofollow ugc">{{ .name }}</a>{{ else }}{{ .name }}{{ end }}</span>
+                    <a href="#comment-{{ ._id | md5 }}" title="Permalink to this comment">
+                    <time class="comment-timestamp" datetime="{{ .date }}">{{ .date | time.Format ":date_long" }} at {{ .date | time.Format ":time_short"}}</time>
                     </a>
-                    <a href="#comment-{{ $hasComments }}" title="Permalink to this comment">
-                      <span class="comment-number">#{{ $hasComments }}</span>
-                    </a>
+                    <span class="comment-number">#{{ $hasComments }}</span>
                 </div>
                 <div class="comment-content"><p>{{ .comment | markdownify }}</p></div>
               </div>
-
             {{ end }}
           {{ end }}
+          </div>
+          <a class="reply-link" href="#staticman-form" onclick="replyTo('{{ ._id }}')" >Reply</a>
         </article>
         {{ end }}
       {{ end }}
     {{ end }}
   
   <div class="comment-form">
+    <a href="#staticman-form" id="resetButton" onclick="reset('')" hidden>Cancel reply</a>
     <form id="staticman-form" method="post" action="{{ $.Site.Params.staticman.api }}" onsubmit="return checkForm(this);">
       <h3>Your thoughts?</h3>
       <span class="staticman-info">Your email address will not be published. Required fields are marked *</span>
-
       <fieldset>
           <input type="hidden" name="options[redirect]" value="{{ $.RelPermalink | absURL }}#comment-thankyou">
           <input type="hidden" name="options[slug]" value="{{ replace $.RelPermalink "/" "" }}">
@@ -80,14 +76,13 @@
           <button class="button" id="submitButton">Submit</button>
           <output id="warningComment"></output>
       </fieldset>
-  </form>
-    <button class="button reset" id="resetButton" onclick="reset('')" hidden>Cancel reply</button>
-    </div>
-      <aside aria-label="note" class="note">
-        <section id="comment-thankyou" style="display: none; margin-left: 5px"> 
-          Thank you for your comment, it will be displayed once it has been approved!
-        </section>
-      </aside>
+    </form>
+  </div>
+  <aside aria-label="note" class="note">
+    <section id="comment-thankyou" style="display: none; margin-left: 5px"> 
+      Thank you for your comment, it will be displayed once it has been approved!
+    </section>
+  </aside>
   <script type="application/javascript">
     {{ partial "staticman-js-common.js" . | safeJS }}
   </script>

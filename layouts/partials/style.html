@@ -72,16 +72,16 @@
     opacity: .8;
   }
 
-	.title {
-	    text-decoration: none;
-	    border: 0;
+  .title {
+      text-decoration: none;
+      border: 0;
       margin-bottom: 0;
-	}
+  }
 
-	.title h1 {
-	    font-size: 1.5em;
+  .title h1 {
+      font-size: 1.5em;
       letter-spacing: 5px;
-	}
+  }
 
   .post-title {
     font-size: 2em;
@@ -91,7 +91,7 @@
 
   time {
     color: #7a7a7a;
-  	font-style: italic;
+    font-style: italic;
   }
 
   nav a {
@@ -174,13 +174,17 @@
   }
 
   ul.blog-posts li {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
     padding: 5px 0;
     line-height: 1.2;
   }
 
   ul.blog-posts li span {
-    flex: 0 0 110px;
+    -webkit-box-flex: 0;
+        -ms-flex: 0 0 110px;
+            flex: 0 0 110px;
   }
 
   ul.blog-posts li a:visited {
@@ -210,52 +214,78 @@
 
 /* Styles for staticman fields*/
   .staticman-comments {
-    margin-top: 30px;
+    margin-top: 25px;
     margin-bottom: 2rem;
     border-top: 1px solid #999;
     max-width: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    flex-direction: column;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
     position: relative;
   }
 
   .static-comment {
-    border-bottom: 1px solid #999;
+    border-bottom: 1px solid #ccc;
     margin-top: 2rem;
     padding-bottom: 2rem;
   }
-  .reply {
-    margin-left: 50px;
-    padding: 20px;
-    margin-top: 0;
-    margin-bottom: 5px;
-    background-color: #fefefe;
-    border: 1px solid rgba(0, 0, 0, .1);
+
+  .comments-reply {
+    margin-bottom: 32px;
   }
+
+  .reply {
+    margin-left: 15px;
+    padding: 20px;
+    background-color: #f7f7f7;
+    border-left: 5px solid #ccc;
+  }
+
+  .reply-link {
+    border: 1px solid rgba(0,0,0,.1);
+    padding: 7px 20px;
+    border-radius: 5px;
+    background-color: rgba(0,0,0,0.04);
+    color: rgba(0,0,0,.5);
+  }
+
   .comment-meta {
     position: relative;
     font-size: 1rem;
   }
 
   .comment-gravatar {
-    width: 48px;
+    width: 43px;
+    border-radius: 5px;
+    border: 1px solid #eee;
   }
 
-  .comment-author {
+  .comment-user {
     position: absolute;
-    left: 60px;
+    left: 50px;
     font-weight: 700;
+  }
+
+  .comment-author, .comment-author a {
+    color: #ff6c47;
   }
 
   .comment-timestamp {
     position: absolute;
-    left: 60px;
-    bottom: 0;
+    left: 50px;
+    bottom: 5px;
+    font-size: .8rem;
   }
 
   .comment-number {
     position: absolute;
     right: 0;
+    font-size: 1.2rem;
+    color: #888;
   }
 
   .staticman-comments input, .staticman-comments textarea {
@@ -287,8 +317,13 @@
   }
 
   .staticman-comments fieldset {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    flex-direction: column;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
     border: none;
     padding: 0;
     margin: 0;
@@ -302,7 +337,7 @@
   .staticman-comments .button {
     position: relative;
     padding: 1rem;
-    width: 150px;
+    width: 140px;
     background: #fefefe;
     border: 1px solid #999;
     border-radius: 5px;
@@ -315,9 +350,10 @@
   }
 
   #resetButton {
-    position: relative;
-    float: right;
-    margin-top: -60px;
+    position: absolute;
+    right: 0;
+    top: 25px;
+    color: #FF0000;
   }
 
   .note #comment-thankyou {
@@ -393,15 +429,29 @@
     }
 
     .staticman-comments input:focus, .staticman-comments textarea:focus {
-    outline: none;
-    border: 1px solid rgba(0, 0, 0, .8);
-    background-color: rgba(0, 0, 0, .2);
+      outline: none;
+      border: 1px solid rgba(0, 0, 0, .8);
+      background-color: rgba(0, 0, 0, .2);
+    }
+
+    .comment-number {
+      color: #dedede;
+    }
+
+    .comment-gravatar {
+      border-color: rgba(0, 0, 0, .1);
     }
 
     .reply {
-    background-color: rgba(0, 0, 0, .3);
-    border: 1px solid rgba(0, 0, 0, .4);
+      background-color: rgba(0, 0, 0, .1);
+      border-left: 5px solid rgba(0, 0, 0, .2);
     }
+
+    .reply-link {
+      border: 1px solid rgba(0,0,0,.2);
+      background-color: rgba(0,0,0,0.1);
+      color: #dedede;
+  }
 
     .helptext {
       color: #aaa;
@@ -477,6 +527,5 @@
 .css .o,
 .css .o + .nt,
 .css .nt + .nt { color: #999; }
-
 
 </style>
