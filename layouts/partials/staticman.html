@@ -54,16 +54,16 @@
             {{ end }}
           {{ end }}
           </div>
-          <a class="reply-link" href="#staticman-form" onclick="replyTo('{{ ._id }}')" >Reply</a>
+          <a class="reply-link" id="reply-{{ ._id | md5}}" onclick="replyTo('{{ ._id }}', '{{ .name }}', '{{ ._id | md5}}')" >Reply</a>
         </article>
         {{ end }}
       {{ end }}
     {{ end }}
   
-  <div class="comment-form">
-    <a href="#staticman-form" id="resetButton" onclick="reset('')" hidden>Cancel reply</a>
+  <div class="comment-form" id="comment-form">
+    <a id="resetButton" onclick="reset('')" hidden>Cancel reply</a>
     <form id="staticman-form" method="post" action="{{ $.Site.Params.staticman.api }}" onsubmit="return checkForm(this);">
-      <h3>Your thoughts?</h3>
+      <h3 id="comment-form-header">Your thoughts?</h3>
       <span class="staticman-info">Your email address will not be published. Required fields are marked *</span>
       <fieldset>
           <input type="hidden" name="options[redirect]" value="{{ $.RelPermalink | absURL }}#comment-thankyou">
@@ -78,14 +78,12 @@
       </fieldset>
     </form>
   </div>
-  <aside aria-label="note" class="note">
-    <section id="comment-thankyou" style="display: none; margin-left: 5px"> 
+  <aside aria-label="note" class="note" id="comment-thankyou" style="display: none; text-align: center;">
       Thank you for your comment, it will be displayed once it has been approved!
-    </section>
   </aside>
   <script type="application/javascript">
     {{ partial "staticman-js-common.js" . | safeJS }}
   </script>
-  <noscript>Enable JavaScript to view comments.</noscript>
+  <noscript>For replies, enable Javascript!</noscript>
 </section>
 {{ end }}

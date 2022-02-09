@@ -4,14 +4,25 @@ if (/comment-thankyou/.test(window.location.href)) {
     document.getElementById('comment-thankyou').style.display = 'none';
 }
 
-function replyTo(parent) {
-  var e = document.getElementById(parent);
+function replyTo(parent, name, commentID) {
+  var e = document.getElementById(parent),
+      z = document.getElementById('comment-' + commentID),
+      f = document.getElementById('comment-form'),
+      h = document.getElementById('comment-form-header');
+
+  h.innerHTML = 'Reply to ' + name;
+  z.parentNode.insertBefore(f, z.nextSibling);
   document.getElementsByName('fields[reply_to]')[0].value=parent;
   document.getElementById("resetButton").hidden = false;
 }
 
 function reset(parent) {
-  var e = document.getElementById(parent);
+  var a = document.getElementById('comment-thankyou'),
+      f = document.getElementById('comment-form'),
+      h = document.getElementById('comment-form-header');
+
+  h.innerHTML = 'Your thoughts?';
+  a.parentNode.insertBefore(f, a.previousSibling);
   document.getElementsByName('fields[reply_to]')[0].value=parent;
   document.getElementById("resetButton").hidden = true;
 }
