@@ -1,20 +1,35 @@
 {{ define "main" }}
-<section>
+<section class="main">
 {{ if eq .Type "blog" }}
-  <h1 class="post-title">{{ .Title }}</h1>
-  <time class="post-time" datetime='{{ .Date.Format `2006-01-02T15:04:05Z07:00` | safeHTML }}'>
-    {{ .Date | time.Format ":date_full" }}
-  </time>
-    
-  {{ .Content }}
+  <header>
+    <h1 class="post-title">{{ .Title }}</h1>
+    <time class="post-time" datetime='{{ .Date.Format `2006-01-02T15:04:05Z07:00` | safeHTML }}'>
+      {{ .Date | time.Format ":date_full" }}
+    </time>
+  </header>
 
-<div>
-  Tags:
-  {{ range (.GetTerms "tags") }}
-  <a href="{{ .Permalink }}">#{{ .LinkTitle }}</a>
-  {{ end }}
-</div>
-  {{ partial "share.html" . }}
+  <div class="main-content">
+    {{ .Content }}
+    <div class="tags">
+          Tags:
+      {{ range (.GetTerms "tags") }}
+        <a href="{{ .Permalink }}">#{{ .LinkTitle }}</a>
+      {{ end }}
+      {{ partial "share.html" . }}
+    </div>
+    <div class="nav-post">
+      <span class="link-prev">
+        {{with .PrevInSection}}
+          <a href="{{.Permalink}}?ref=nav">{{ .Title }}</a>
+        {{ end }}
+      </span>
+      <span class="link-next">
+        {{with .NextInSection}}
+          <a href="{{.Permalink}}?ref=nav">{{ .Title }}</a>
+        {{ end }}
+      </span>
+    </div>
+  </div>
   {{ partial "related.html" . }}
   {{ partial "staticman.html" . }}
 {{ else }}

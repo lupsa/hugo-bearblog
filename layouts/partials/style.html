@@ -84,9 +84,10 @@
   }
 
   .post-title {
+    margin-bottom: .5rem;
     font-size: 2em;
     line-height: 1.1;
-    letter-spacing: -.025;
+    letter-spacing: -.025px;
   }
 
   time {
@@ -189,13 +190,46 @@
     color: #8b6fcb;
   }
 
-  .share-buttons {
+  .main {
+    position: relative;
+    width: 100%;
+  }
+
+  .main-content {
+    position: relative;
+    border-bottom: 1px solid #999;
     margin-bottom: 25px;
   }
 
+  .tags {
+    padding-bottom: 25px;
+  }
+
+  /* navigation posts */
+  .nav-post {
+    position: relative;
+    display: inline-flex;
+    width: 100%;
+    line-height: 1.2;
+  }
+
+  .link-prev {
+    width: 50%;
+    float: left;
+    text-align: left;
+    border-right: 1px solid #999;
+  }
+
+  .link-next {
+    width: 50%;
+    float: right;
+    text-align: right;
+  }
+  /* end navigation posts */
+
+
   .related {
-    padding-top: 25px;
-    border-top: 1px solid #999;
+    /*padding-top: 25px;*/
   }
 
   .related h3 {
